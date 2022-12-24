@@ -33,8 +33,7 @@ class ProductController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    return '<a class="btn btn-sm btn-primary" href="' . route('update-product', $row->id) . '">Edit</a>';
-
+                    return '<a class="btn btn-sm btn-primary" href="'.route('update-product', $row->id).'">Edit</a>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -49,8 +48,9 @@ class ProductController extends Controller
     public function createProduct(Request $request)
     {
         if ((new CreateAction())->execute($request)) {
-            return redirect()->route('index');
+            return redirect()->route('index')->with('success', 'Item Created successfully!');
         }
+
         return redirect()->back()->withInput();
     }
 
@@ -67,9 +67,8 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         if ((new UpdateAction())->execute($request, $product)) {
-            return redirect()->route('index');
+            return redirect()->route('index')->with('success', 'Item updated successfully!');
         }
-
     }
 
     public function pullButton()

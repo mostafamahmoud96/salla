@@ -15,7 +15,7 @@ class UpdateAction
             $output = Http::withHeaders([
                 'Authorization' => 'Bearer WixnvB2ekMC5j8gDxOKx9wfE6288zstO6fpaBU9AS1Y.JP8rO9zGpajrI_VvLky_JfvDaL5KdOH784DF5V1zs00',
                 'Content-Type' => 'application/json',
-            ])->put('https://api.salla.dev/admin/v2/products/' . $product->id, [
+            ])->put('https://api.salla.dev/admin/v2/products/'.$product->id, [
                 'name' => $data['name'],
                 'product_type' => $data['product_type'],
                 'sku' => $data['sku'],
@@ -34,20 +34,19 @@ class UpdateAction
             if ($output['status'] == 201) {
                 if ($data['main_image']) {
                     if ($data['main_image']) {
-                        $imageName = time() . '.' . $data['main_image']->getClientOriginalName();
+                        $imageName = time().'.'.$data['main_image']->getClientOriginalName();
 
-                        Storage::disk('local')->put('images/' . $imageName, 'public');
+                        Storage::disk('local')->put('images/'.$imageName, 'public');
                     }
 
                     $data['main_image'] = $imageName ?? null;
                 }
                 $product->update($data->all());
+
                 return true;
             }
-
         } catch (\Throwable$th) {
             throw $th;
         }
     }
-
 }

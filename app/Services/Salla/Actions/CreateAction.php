@@ -11,7 +11,6 @@ class CreateAction
 {
     public function execute($data)
     {
-
         try {
             $output = Http::withHeaders([
                 'Authorization' => 'Bearer WixnvB2ekMC5j8gDxOKx9wfE6288zstO6fpaBU9AS1Y.JP8rO9zGpajrI_VvLky_JfvDaL5KdOH784DF5V1zs00',
@@ -31,9 +30,9 @@ class CreateAction
             }
             if ($output['status'] == 201) {
                 if ($data['main_image']) {
-                    $imageName = time() . '.' . $data['main_image']->getClientOriginalName();
+                    $imageName = time().'.'.$data['main_image']->getClientOriginalName();
 
-                    Storage::disk('local')->put('images/' . $imageName, 'public');
+                    Storage::disk('local')->put('images/'.$imageName, 'public');
                 }
 
                 Product::create([
@@ -46,11 +45,10 @@ class CreateAction
                     'main_image' => $imageName ?? null,
                 ]);
             }
-            return true;
 
+            return true;
         } catch (\Throwable$th) {
             throw $th;
         }
     }
-
 }

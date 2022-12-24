@@ -18,7 +18,6 @@ class SyncAction
                 $rows = $this->getProducts($page);
 
                 foreach ($rows['data'] as $row) {
-
                     $products[] = [
                         'id' => $row['id'],
                         'name' => $row['name'],
@@ -37,9 +36,7 @@ class SyncAction
             );
 
             return true;
-
         } catch (\Throwable$th) {
-
             return $th;
         }
     }
@@ -49,7 +46,7 @@ class SyncAction
         $response = Http::withHeaders([
             'Authorization' => 'Bearer WixnvB2ekMC5j8gDxOKx9wfE6288zstO6fpaBU9AS1Y.JP8rO9zGpajrI_VvLky_JfvDaL5KdOH784DF5V1zs00',
             'Content-Type' => 'application/json',
-        ])->get('https://api.salla.dev/admin/v2/products?page=' . $page);
+        ])->get('https://api.salla.dev/admin/v2/products?page='.$page);
 
         if ($response['status'] !== 200) {
             throw new Exception();
@@ -61,5 +58,4 @@ class SyncAction
 
         return $response;
     }
-
 }
