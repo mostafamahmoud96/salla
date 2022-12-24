@@ -7,7 +7,7 @@ Sync Data between API and local .
 ```bash
 Composer Install
 npm install
-npm run
+npm run dev
 ```
 
 ## Usage
