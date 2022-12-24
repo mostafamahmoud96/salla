@@ -18,7 +18,8 @@ class ProductController extends Controller
         'codes',
         'digital',
         'food',
-        'donating'];
+        'donating',
+    ];
 
     public function index()
     {
@@ -33,7 +34,7 @@ class ProductController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    return '<a class="btn btn-sm btn-primary" href="'.route('update-product', $row->id).'">Edit</a>';
+                    return '<a class="btn  btn-primary" href="' . route('update-product', $row->id) . '">Edit</a>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
